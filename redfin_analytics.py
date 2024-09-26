@@ -16,7 +16,8 @@ url_by_city = 'https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_mark
 
 def extract_data(**kwargs):
     url = kwargs['url']
-    df = pd.read_csv(url, compression='gzip', sep='\t')
+    nrows = kwargs.get('nrows', None)
+    df = pd.read_csv(url, compression='gzip', sep='\t', nrows=nrows)
     now = datetime.now()
     date_now_string = now.strftime("%d%m%Y%H%M%S")
     file_str = 'redfin_data_' + date_now_string
@@ -113,7 +114,7 @@ with DAG('redfin_analytics_dag',
         extract_redfin_data = PythonOperator(
         task_id= 'tsk_extract_redfin_data',
         python_callable=extract_data,
-        op_kwargs={'url': url_by_city}
+        op_kwargs={'url': url_by_city, 'nrows': 100000}
         )
 
 
