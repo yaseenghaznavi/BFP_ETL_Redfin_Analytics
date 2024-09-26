@@ -50,7 +50,7 @@ CREATE OR REPLACE STAGE redfin_database.external_stage_schema.redfin_ext_stage_y
     aws_secret_key='xxxx')
     FILE_FORMAT = redfin_database.file_format_schema.format_csv;
 
-list @redfin_database.external_stage_schema.redfin_ext_stage_yml;
+list @redfin_database.external_stage_schema.redfin_ext_stage_yag;
 
 CREATE OR REPLACE SCHEMA redfin_database.snowpipe_schema;
 
