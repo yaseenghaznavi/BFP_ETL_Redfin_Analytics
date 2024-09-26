@@ -125,7 +125,7 @@ with DAG('redfin_analytics_dag',
 
         load_to_s3 = BashOperator(
             task_id = 'tsk_load_to_s3',
-            bash_command = 'aws s3 mv {{ ti.xcom_pull("tsk_extract_redfin_data")[0]}} s3://store-raw-data-yml',
+            bash_command = 'aws s3 mv {{ ti.xcom_pull("tsk_extract_redfin_data")[0]}} s3://store-raw-data-yag',
         )
 
         extract_redfin_data >> transform_redfin_data >> load_to_s3
